@@ -13,7 +13,7 @@
     <div class="nav-container">
       <a href="index.html" class="logo">Hari Bhavsar</a>
       <ul class="nav-links">
-        <li><a href="fun.html" class="active">Fun</a></li>
+        
         <li><a href="teaching.html">Teaching</a></li>
         <li><a href="cv.html">CV</a></li>
         <li><a href="publications.html">Publications</a></li>
@@ -23,8 +23,81 @@
   </nav>
   <header><h1>Teaching</h1></header>
   <section>
-    <p>Details of teaching experience go here.</p>
+    <p>I have been a teaching assistant for the following courses</p>
+
+    <!-- Teaching card -->
+    <div class="teach-card" tabindex="0" role="button" aria-expanded="false">
+      <div class="teach-header">
+        <span class="college">IIT Bombay</span>
+        <span class="sep">|</span>
+        <span class="course">CS231: Digital Logic Design and Computer Architecture</span>
+        <span class="sep">|</span>
+        <span class="instructor">Instructor: Biswabandan Panda</span>
+      </div>
+
+      <div class="teach-extra" aria-hidden="true">
+        <div class="teach-details">
+          <div><strong>Semester:</strong> Autumn 2025</div>
+          <div><strong>Format:</strong> 3 hours of lab per week</div>
+          <div class="desc"><strong>Description:</strong> The lab was divided into the following parts:
+            <ul>
+              <li>Verilog: Part of digital logic, covers combinational and sequential circuit implementation</li>
+              <li>X86-64 Assembly: Registers, stack, functions, calling conventions as well as structs</li>
+              <li>Performance: Using performance tools such as perf and vtune to recognise microarchitectural bottlenecks</li>
+              <li>Simulator: Extended the <a href="https://champsim.github.io/ChampSim/master/index.html" target="_blank">Champsim</a> Simulator to model various cache designs</li>
+            </ul> 
+          
+          </div>
+          <div class="teach-links">
+            <a href="https://docs.google.com/spreadsheets/d/1cO_I0VBXuxfiaIrORDueDLwtsPEQy6bSRY--WCSAmUg/edit?gid=2048641762#gid=2048641762" target="_blank">All course material</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="teach-card" tabindex="0" role="button" aria-expanded="false">
+      <div class="teach-header">
+        <span class="college">IIT Bombay</span>
+        <span class="sep">|</span>
+        <span class="course">CS236: Operating Systems Lab</span>
+        <span class="sep">|</span>
+        <span class="instructor">Instructor: Mythili Vutukuru</span>
+      </div>
+
+      <div class="teach-extra" aria-hidden="true">
+        <div class="teach-details">
+          <div><strong>Semester:</strong> Spring 2025</div>
+          <div><strong>Format:</strong> 3 hours of lab per week</div>
+          <div class="desc"><strong>Description:</strong> The course was divided into four parts - processes, memory, concurrency and IO/file systems. For the first 3 parts, students had to implement basic OS functionality by extending the <a href="https://www.cse.iitb.ac.in/~mythili/os/references/book-rev11.pdf" target="_blank">XV6 OS</a>.
+          
+          </div>
+          <div class="teach-links">
+            <a href="https://www.cse.iitb.ac.in/~mythili/os/" target="_blank">Syllabus & Lecture Notes</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
+    <script>
+      // Toggle expansion for teaching cards
+      (function(){
+        const cards = document.querySelectorAll('.teach-card');
+        cards.forEach(card => {
+          function setExpanded(expanded){
+            card.classList.toggle('expanded', expanded);
+            card.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+            const extra = card.querySelector('.teach-extra');
+            if (extra) extra.setAttribute('aria-hidden', expanded ? 'false' : 'true');
+          }
+          card.addEventListener('click', (e) => {
+            if (e.target.closest('.teach-extra')) return;
+            setExpanded(!card.classList.contains('expanded'));
+          });
+          card.addEventListener('keydown', (e)=>{
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setExpanded(!card.classList.contains('expanded')); }
+          });
+        });
+      })();
+    </script>
   <footer><p>&copy; 2025 Hari Bhavsar</p></footer>
 </body>
 </html>

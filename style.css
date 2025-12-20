@@ -113,3 +113,182 @@ section h2 {
 .contact-links a:hover {
   color: #357ABD;
 }
+
+/* Publication card styles */
+.pub-card {
+  display: flex;
+  flex-direction: column; /* stack title above venue/award in compact view */
+  align-items: flex-start;
+  gap: 12px;
+  background: #fff;
+  padding: 18px;
+  margin-bottom: 18px;
+  border-radius: 8px;
+  border: 1px solid #e6eef9;
+  box-shadow: 0 2px 6px rgba(21,39,61,0.04);
+}
+
+.pub-card { cursor: pointer; }
+.pub-card:focus { box-shadow: 0 0 0 3px rgba(66,133,244,0.15); outline: none; }
+
+.pub-left {
+  flex: none;
+  display: block;
+  align-items: flex-start;
+  padding-right: 0;
+}
+
+.pub-title {
+  font-size: 1.6rem;
+  margin: 0;
+  color: #1f2d3d;
+  text-align: left;
+}
+
+.pub-right {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start; /* venue/award stacked under title */
+  margin-top: 6px;
+}
+
+.pub-venue {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #28558a;
+  margin-bottom: 6px;
+}
+
+.pub-award {
+  font-size: 1rem;
+  color: #555;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.usenix-logo {
+  display: inline-block;
+  vertical-align: middle;
+  width: 28px;
+  height: 28px;
+  margin-right: 8px;
+}
+
+.usenix-logo img { display: block; width: 28px; height: 28px; object-fit: contain; }
+
+.venue-text { vertical-align: middle; }
+
+/* Expanded content (hidden by default) */
+.pub-extra {
+  display: none;
+  width: 100%;
+  margin-top: 12px;
+  padding-top: 6px;
+  border-top: 1px dashed #e6eef9;
+}
+.pub-card.expanded {
+  flex-direction: column;
+  align-items: stretch;
+}
+.pub-card.expanded .pub-left,
+.pub-card.expanded .pub-right {
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.pub-card.expanded .pub-title { text-align: left; }
+.pub-card.expanded .pub-extra { display: block; }
+
+.pub-details { display: flex; flex-direction: column; gap: 8px; }
+.field-label { font-weight: 600; color: #333; font-size: 0.95rem; }
+.author-text, .abstract-text {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #f0f4fb;
+  border-radius: 6px;
+  background: #ffffff;
+  min-height: 36px;
+  color: #222;
+  white-space: pre-wrap;
+}
+
+.pub-links {
+  margin-top: 8px;
+  display: flex;
+  gap: 12px;
+}
+.pub-links a {
+  color: #28558a;
+  text-decoration: none;
+  font-weight: 600;
+}
+.pub-links a:hover { text-decoration: underline; }
+
+@media (max-width: 600px) {
+  .pub-card { padding: 14px; }
+  .author-text, .abstract-text { font-size: 0.95rem; }
+}
+
+/* Teaching card styles */
+.teach-card {
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+  border: 1px solid #e6eef9;
+  border-radius: 10px;
+  padding: 16px;
+  margin: 18px 0;
+  box-shadow: 0 6px 18px rgba(21,39,61,0.06);
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+  position: relative;
+  overflow: hidden;
+  border-left: 4px solid #4a90e2;
+}
+.teach-card:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(21,39,61,0.10); }
+.teach-card:focus { outline: none; box-shadow: 0 0 0 4px rgba(66,133,244,0.10); }
+.teach-header { font-size: 1rem; font-weight: 600; color: #1f2d3d; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.teach-header .sep { color: #9fb6db; margin: 0 6px; }
+
+/* Animated expand/collapse using max-height */
+.teach-extra {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 260ms ease, padding 200ms ease;
+  border-top: 1px dashed #e6eef9;
+  padding-top: 0;
+}
+.teach-card.expanded .teach-extra {
+  padding-top: 12px;
+  max-height: 1200px; /* large enough to show content */
+}
+
+.teach-details { display: flex; flex-direction: column; gap: 10px; }
+.desc ul { margin: 8px 0 8px 18px; }
+.desc li { margin-bottom: 6px; }
+.teach-links { display:flex; gap:12px; margin-top:8px; }
+.teach-links a {
+  color: #28558a;
+  text-decoration: none;
+  font-weight: 600;
+  background: #f3f9ff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #d6e9ff;
+}
+.teach-links a:hover { text-decoration: none; transform: translateY(-1px); }
+
+@media (max-width: 600px) {
+  .pub-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .pub-left {
+    flex: none;
+    width: 100%;
+    justify-content: flex-start;
+    margin-bottom: 8px;
+  }
+  .pub-title { font-size: 1.25rem; }
+}
