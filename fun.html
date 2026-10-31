@@ -1,112 +1,260 @@
 
-<!-- fun.html -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Beyond Research | Hari Bhavsar</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interests outside research of Hari Bhavsar.">
+    <title>Beyond Research | Hari Bhavsar</title>
 
-  <style>
-    .page-header {
-      padding: 48px 0 28px;
-      border-bottom: 1px solid #e5e7eb;
-      margin-bottom: 32px;
-    }
+    <style>
+        :root {
+            --background: #ffffff;
+            --surface: #f7f8fa;
+            --text: #202938;
+            --muted: #5c6675;
+            --accent: #245b8f;
+            --border: #e5e9ef;
+            --max-width: 1000px;
+        }
 
-    .page-header h1 {
-      margin: 0 0 10px;
-      color: #1f2937;
-      font-size: 2.2rem;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    .page-header p {
-      margin: 0;
-      color: #6b7280;
-      font-size: 1.05rem;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    .interests {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px;
-      margin: 32px 0;
-    }
+        body {
+            background: var(--background);
+            color: var(--text);
+            font-family: "Inter", "Segoe UI", Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.75;
+        }
 
-    .interest-card {
-      padding: 24px;
-      border: 1px solid #e5e7eb;
-      border-radius: 10px;
-      background: #fff;
-    }
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
 
-    .interest-card h2 {
-      margin: 0 0 12px;
-      color: #245b8f;
-      font-size: 1.25rem;
-    }
+        a:hover {
+            text-decoration: underline;
+        }
 
-    .interest-card p {
-      margin: 0;
-      color: #4b5563;
-      line-height: 1.75;
-    }
+        /* Navigation */
 
-    @media (max-width: 650px) {
-      .interests {
-        grid-template-columns: 1fr;
-      }
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
 
-      .page-header h1 {
-        font-size: 1.8rem;
-      }
-    }
-  </style>
+        .nav-container {
+            max-width: var(--max-width);
+            min-height: 68px;
+            margin: 0 auto;
+            padding: 0 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .logo {
+            color: var(--text);
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover,
+        .nav-links a[aria-current="page"] {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Page */
+
+        main {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 58px 28px 40px;
+        }
+
+        .page-header {
+            margin-bottom: 34px;
+        }
+
+        .page-header h1 {
+            margin-bottom: 8px;
+            font-size: clamp(28px, 4vw, 36px);
+            line-height: 1.25;
+            letter-spacing: -1px;
+        }
+
+        .page-header p {
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        .section-heading {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+            font-size: 21px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        /* Interest cards */
+
+        .interests {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .interest-card {
+            padding: 24px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: #ffffff;
+        }
+
+        .interest-card h2 {
+            margin-bottom: 10px;
+            color: var(--accent);
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.2px;
+        }
+
+        .interest-card p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.75;
+        }
+
+        /* Footer */
+
+        footer {
+            margin-top: 70px;
+            padding: 24px 28px;
+            border-top: 1px solid var(--border);
+            color: #7a8491;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        /* Responsive layout */
+
+        @media (max-width: 700px) {
+            .nav-container {
+                padding: 14px 20px;
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 18px;
+            }
+
+            main {
+                padding: 42px 20px 30px;
+            }
+
+            .interests {
+                grid-template-columns: 1fr;
+            }
+
+            .interest-card {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <nav class="navbar">
-    <div class="nav-container">
-      <a href="index.html" class="logo">Hari Bhavsar</a>
 
-      <ul class="nav-links">
-        <li><a href="teaching.html">Teaching</a></li>
-        <li><a href="cv.html">CV</a></li>
-        <li><a href="publications.html">Publications</a></li>
-        <li><a href="fun.html" class="active">Beyond Research</a></li>
-      </ul>
-    </div>
-  </nav>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Hari Bhavsar</a>
 
-  <main class="container">
-    <header class="page-header">
-      <h1>Beyond Research</h1>
-      <p>A few things I enjoy outside of computer architecture.</p>
-    </header>
+            <ul class="nav-links">
+                <li><a href="teaching.html">Teaching</a></li>
+                <li><a href="cv.html">CV</a></li>
+                <li><a href="publications.html">Publications</a></li>
+                <li>
+                    <a href="fun.html" aria-current="page">Beyond Research</a>
+                </li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <section class="interests">
-      <article class="interest-card">
-        <h2>Cycling</h2>
-        <p>
-          I enjoy cycling as a way to explore, stay active, and take a break
-          from research.
-        </p>
-      </article>
+    <main>
+        <header class="page-header">
+            <h1>Beyond Research</h1>
+            <p>
+                A few things I enjoy outside of computer architecture.
+            </p>
+        </header>
 
-      <article class="interest-card">
-        <h2>Cooking</h2>
-        <p>
-          I enjoy cooking and experimenting with different dishes, especially
-          finding new ways to make everyday meals interesting.
-        </p>
-      </article>
-    </section>
-  </main>
+        <section aria-labelledby="personal-interests">
+            <h2 class="section-heading" id="personal-interests">
+                Personal Interests
+            </h2>
 
-  <footer>
-    <p>&copy; 2026 Hari Bhavsar</p>
-  </footer>
+            <div class="interests">
+
+                <article class="interest-card">
+                    <h2>Cycling</h2>
+                    <p>
+                        I enjoy cycling as a way to explore, stay active, and
+                        take a break from research.
+                    </p>
+                </article>
+
+                <article class="interest-card">
+                    <h2>Cooking</h2>
+                    <p>
+                        I enjoy cooking and experimenting with different dishes,
+                        especially finding new ways to make everyday meals
+                        interesting. I have made one dish from every state of India.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Hari Bhavsar</p>
+    </footer>
+
 </body>
 </html>
-```
