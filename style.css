@@ -292,3 +292,53 @@ section h2 {
   }
   .pub-title { font-size: 1.25rem; }
 }
+.publication-details[hidden] {
+    display: none !important;
+}
+
+.teaching-award {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding: 14px 18px;
+    border: 1px solid #eadca8;
+    border-radius: 7px;
+    background: #fffdf5;
+}
+
+.award-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #fef3c7;
+    color: #eab308;
+    font-size: 20px;
+    line-height: 1;
+}
+
+.award-content strong {
+    display: block;
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.45;
+}
+
+.award-content small {
+    display: block;
+    margin-top: 3px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+    .teaching-award {
+        align-items: flex-start;
+        padding: 12px 14px;
+    }
+}

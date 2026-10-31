@@ -1,54 +1,380 @@
-<!-- index.html (Home Page) -->
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hari Bhavsar</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="description"
+        content="Hari Bhavsar — Computer Architecture researcher at IIT Bombay, interested in cache hierarchies, performance, and security.">
+    <title>Hari Bhavsar | Computer Architecture</title>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        :root {
+            --background: #ffffff;
+            --surface: #f7f8fa;
+            --text: #202938;
+            --muted: #5c6675;
+            --accent: #245b8f;
+            --border: #e5e9ef;
+            --max-width: 1000px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            font-family: "Inter", "Segoe UI", Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.75;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Navigation */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: var(--max-width);
+            min-height: 68px;
+            margin: 0 auto;
+            padding: 0 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .logo {
+            color: var(--text);
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Main content */
+
+        main {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 64px 28px 40px;
+        }
+
+        .profile-section {
+            display: grid;
+            grid-template-columns: 190px minmax(0, 1fr);
+            align-items: start;
+            gap: 42px;
+        }
+
+        .profile-pic {
+            display: block;
+            width: 170px;
+            height: 170px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .intro h1 {
+            margin-bottom: 5px;
+            font-size: clamp(28px, 4vw, 36px);
+            line-height: 1.25;
+            letter-spacing: -1px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            margin-bottom: 22px;
+            color: var(--accent);
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .intro p {
+            margin-bottom: 15px;
+            color: var(--muted);
+            font-size: 15.5px;
+        }
+
+        .intro p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Sections */
+
+        section {
+            margin-top: 58px;
+        }
+
+        .section-heading {
+            margin-bottom: 22px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+            font-size: 21px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .news-item {
+            display: grid;
+            grid-template-columns: 105px minmax(0, 1fr);
+            gap: 18px;
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        .news-date {
+            color: var(--text);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* Contact */
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .contact-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 9px 15px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .contact-links a:hover {
+            background: var(--surface);
+            border-color: #cbd5e1;
+            text-decoration: none;
+        }
+
+        .contact-links i {
+            color: var(--accent);
+        }
+
+        /* Footer */
+
+        footer {
+            margin-top: 70px;
+            padding: 24px 28px;
+            border-top: 1px solid var(--border);
+            color: #7a8491;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        /* Responsive layout */
+
+        @media (max-width: 700px) {
+            .nav-container {
+                padding: 14px 20px;
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 18px;
+            }
+
+            main {
+                padding: 42px 20px 30px;
+            }
+
+            .profile-section {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .profile-pic {
+                width: 130px;
+                height: 130px;
+            }
+
+            section {
+                margin-top: 44px;
+            }
+
+            .news-item {
+                grid-template-columns: 1fr;
+                gap: 2px;
+            }
+        }
+    </style>
 </head>
 
 <body>
+
     <nav class="navbar">
-        <div class="nav-container"> <a href="index.html" class="logo">Hari Bhavsar</a>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Hari Bhavsar</a>
+
             <ul class="nav-links">
-                
                 <li><a href="teaching.html">Teaching</a></li>
                 <li><a href="cv.html">CV</a></li>
                 <li><a href="publications.html">Publications</a></li>
-                <!-- <li><a href="research.html">Research & Projects</a></li> -->
-                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
-    <header>
-        <h1>Hari Bhavsar</h1>
-    </header>
-    <div class="container"> <img src="me-less-blur.png" alt="Hari Bhavsar" class="profile-pic">
-        <div class="intro">
-            <h2>Hello, I'm Hari Bhavsar</h2>
-<p> I'm a final year undergraduate student at the Indian Institute of Technology, Bombay and a part of the CASPER research group. I am greatly interested in Computer Architecture. In particular, I am fascinated by the concept of the CPU Cache and how it acts as a double-edged sword, boosting performance but often at the cost of security. </p> <p> If one is to understand a great mystery, one must study all its aspects. For Computer Architecture that means both security and performance. On the security side, I am interested in conflict and capacity-based side channel attacks. On the performance side, I am currently investigating the behaviour of graph workloads on the Cache Hierarchy. </p> <p> Outside of academia, I am quite fond of cycling and cooking. In Mumbai, I have cycled from Borivali in the north to Churchgate in the South and from Versova in the West to Vikhroli in the East. </p>
-        </div>
-    </div>
-    <section id="news">
-        <h2>News</h2>
-        <div class="news-item"> <strong>Aug 2025:</strong> Our SoK paper on Secure Randomized Caches was given the
-            Distinguished Artifact Award! </div>
-        <div class="news-item"> <strong>May 2025:</strong> Our SoK paper on Secure Randomized Caches got accepted at
-            Usenix Security'25! </div>
-    </section>
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <div class="contact-links"> <a href="mailto:hari.bhavsar.201407@gmail.com"><i class="fas fa-envelope"></i>
-                Email</a> <a href="https://www.linkedin.com/in/hari-bhavsar" target="_blank"><i
-                    class="fab fa-linkedin"></i> LinkedIn</a> <a href="https://github.com/haribhavsar"
-                target="_blank"><i class="fab fa-github"></i> GitHub</a> </div>
-    </section>
-    <footer>
-        <p>&copy; 2025 Hari Bhavsar</p>
-    </footer>
-</body>
 
+    <main>
+        <section class="profile-section" aria-label="Introduction">
+            <img
+                src="me-less-blur.png"
+                alt="Portrait of Hari Bhavsar"
+                class="profile-pic"
+            >
+
+            <div class="intro">
+                <h1>Hari Bhavsar</h1>
+                <div class="subtitle">
+                    Computer Architecture · IIT Bombay
+                </div>
+
+                <p>
+                    I recently graduated with a Bachelor's degree in Computer Science
+                    from the Indian Institute of Technology Bombay, where I was a
+                    member of the CASPER research group.
+                </p>
+
+                <p>
+                    My research interests lie in computer architecture, particularly
+                    cache hierarchy design and the interaction between performance
+                    and security. I am interested in understanding how caches can
+                    improve processor performance while also introducing new
+                    security challenges.
+                </p>
+
+                <p>
+                    My work spans both sides of this problem. On the security side,
+                    I have studied conflict- and capacity-based cache side-channel
+                    attacks. On the performance side, I investigate cache hierarchy
+                    design for graph workloads and other domain-specific applications.
+                </p>
+
+                <p>
+                    Outside research, I enjoy cycling and cooking. While living in
+                    Mumbai, I have cycled from Borivali to Churchgate and from
+                    Versova to Vikhroli.
+                </p>
+            </div>
+        </section>
+
+        <section id="news">
+            <h2 class="section-heading">News</h2>
+
+            <div class="news-list">
+                <div class="news-item">
+                    <div class="news-date">Aug 2025</div>
+                    <div>
+                        Our SoK paper on Secure Randomized Caches received the
+                        <strong>Distinguished Artifact Award</strong> at USENIX Security 2025.
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-date">May 2025</div>
+                    <div>
+                        Our SoK paper on Secure Randomized Caches was accepted
+                        at <strong>USENIX Security 2025</strong>.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-heading">Contact</h2>
+
+            <div class="contact-links">
+                <a href="mailto:hari.bhavsar.201407@gmail.com">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                    Email
+                </a>
+
+                <a href="https://www.linkedin.com/in/hari-bhavsar"
+                   target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-linkedin" aria-hidden="true"></i>
+                    LinkedIn
+                </a>
+
+                <a href="https://github.com/haribhavsar"
+                   target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                    GitHub
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Hari Bhavsar</p>
+    </footer>
+
+</body>
 </html>
+```

@@ -1,103 +1,509 @@
-
-<!-- teaching.html -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Teaching | Hari Bhavsar</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Teaching experience of Hari Bhavsar at IIT Bombay.">
+    <title>Teaching | Hari Bhavsar</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        :root {
+            --background: #ffffff;
+            --surface: #f7f8fa;
+            --text: #202938;
+            --muted: #5c6675;
+            --accent: #245b8f;
+            --border: #e5e9ef;
+            --max-width: 1000px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            font-family: "Inter", "Segoe UI", Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.75;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Navigation */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: var(--max-width);
+            min-height: 68px;
+            margin: 0 auto;
+            padding: 0 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .logo {
+            color: var(--text);
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover,
+        .nav-links a[aria-current="page"] {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Page */
+
+        main {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 58px 28px 40px;
+        }
+
+        .page-header {
+            margin-bottom: 34px;
+        }
+
+        .page-header h1 {
+            margin-bottom: 8px;
+            font-size: clamp(28px, 4vw, 36px);
+            line-height: 1.25;
+            letter-spacing: -1px;
+        }
+
+        .page-header p {
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        .section-heading {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+            font-size: 21px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        /* Teaching cards */
+
+        .teaching-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .teaching-card {
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: #ffffff;
+        }
+
+        .teaching-header {
+            padding: 22px 25px;
+            border-bottom: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .institution {
+            margin-bottom: 5px;
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
+
+        .course-title {
+            margin-bottom: 8px;
+            font-size: 19px;
+            line-height: 1.45;
+            font-weight: 650;
+        }
+
+        .instructor {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .teaching-details {
+            padding: 22px 25px 25px;
+        }
+
+        /* Teaching award */
+
+        .teaching-award {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            margin-bottom: 22px;
+            padding: 12px 15px;
+            border: 1px solid #eadca8;
+            border-radius: 7px;
+            background: #fffdf5;
+        }
+
+        .award-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #fef3c7;
+            color: #eab308;
+            font-size: 19px;
+            line-height: 1;
+        }
+
+        .award-content {
+            min-width: 0;
+        }
+
+        .award-content strong {
+            display: block;
+            color: var(--text);
+            font-size: 14px;
+            line-height: 1.45;
+        }
+
+        .award-content small {
+            display: block;
+            margin-top: 2px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        /* Course details */
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: 130px minmax(0, 1fr);
+            gap: 8px 18px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .detail-label {
+            color: var(--muted);
+            font-weight: 600;
+        }
+
+        .detail-value {
+            color: var(--text);
+        }
+
+        .description-title {
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .topic-list {
+            padding-left: 20px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .topic-list li {
+            margin-bottom: 8px;
+            padding-left: 4px;
+        }
+
+        .topic-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .topic-list strong {
+            color: #4b5563;
+        }
+
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            padding: 8px 13px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            color: var(--text);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .resource-link:hover {
+            background: var(--surface);
+            border-color: #cbd5e1;
+            text-decoration: none;
+        }
+
+        .resource-link i {
+            color: var(--accent);
+        }
+
+        /* Footer */
+
+        footer {
+            margin-top: 70px;
+            padding: 24px 28px;
+            border-top: 1px solid var(--border);
+            color: #7a8491;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        /* Responsive layout */
+
+        @media (max-width: 700px) {
+            .nav-container {
+                padding: 14px 20px;
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 18px;
+            }
+
+            main {
+                padding: 42px 20px 30px;
+            }
+
+            .teaching-header,
+            .teaching-details {
+                padding: 20px;
+            }
+
+            .course-title {
+                font-size: 17px;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+                gap: 2px;
+            }
+
+            .detail-value {
+                margin-bottom: 10px;
+            }
+
+            .teaching-award {
+                align-items: flex-start;
+                padding: 12px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <nav class="navbar">
-    <div class="nav-container">
-      <a href="index.html" class="logo">Hari Bhavsar</a>
-      <ul class="nav-links">
-        
-        <li><a href="teaching.html">Teaching</a></li>
-        <li><a href="cv.html">CV</a></li>
-        <li><a href="publications.html">Publications</a></li>
-        <!-- <li><a href="research.html">Research & Projects</a></li> -->
-      </ul>
-    </div>
-  </nav>
-  <header><h1>Teaching</h1></header>
-  <section>
-    <p>I have been a teaching assistant for the following courses</p>
 
-    <!-- Teaching card -->
-    <div class="teach-card" tabindex="0" role="button" aria-expanded="false">
-      <div class="teach-header">
-        <span class="college">IIT Bombay</span>
-        <span class="sep">|</span>
-        <span class="course">CS231: Digital Logic Design and Computer Architecture</span>
-        <span class="sep">|</span>
-        <span class="instructor">Instructor: Biswabandan Panda</span>
-      </div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Hari Bhavsar</a>
 
-      <div class="teach-extra" aria-hidden="true">
-        <div class="teach-details">
-          <div><strong>Semester:</strong> Autumn 2025</div>
-          <div><strong>Format:</strong> 3 hours of lab per week</div>
-          <div class="desc"><strong>Description:</strong> The lab was divided into the following parts:
-            <ul>
-              <li>Verilog: Part of digital logic, covers combinational and sequential circuit implementation</li>
-              <li>X86-64 Assembly: Registers, stack, functions, calling conventions as well as structs</li>
-              <li>Performance: Using performance tools such as perf and vtune to recognise microarchitectural bottlenecks</li>
-              <li>Simulator: Extended the <a href="https://champsim.github.io/ChampSim/master/index.html" target="_blank">Champsim</a> Simulator to model various cache designs</li>
-            </ul> 
-          
-          </div>
-          <div class="teach-links">
-            <a href="https://docs.google.com/spreadsheets/d/1cO_I0VBXuxfiaIrORDueDLwtsPEQy6bSRY--WCSAmUg/edit?gid=2048641762#gid=2048641762" target="_blank">All course material</a>
-          </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="teaching.html" aria-current="page">Teaching</a>
+                </li>
+                <li><a href="cv.html">CV</a></li>
+                <li><a href="publications.html">Publications</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
         </div>
-      </div>
-    </div>
-    <div class="teach-card" tabindex="0" role="button" aria-expanded="false">
-      <div class="teach-header">
-        <span class="college">IIT Bombay</span>
-        <span class="sep">|</span>
-        <span class="course">CS236: Operating Systems Lab</span>
-        <span class="sep">|</span>
-        <span class="instructor">Instructor: Mythili Vutukuru</span>
-      </div>
+    </nav>
 
-      <div class="teach-extra" aria-hidden="true">
-        <div class="teach-details">
-          <div><strong>Semester:</strong> Spring 2025</div>
-          <div><strong>Format:</strong> 3 hours of lab per week</div>
-          <div class="desc"><strong>Description:</strong> The course was divided into four parts - processes, memory, concurrency and IO/file systems. For the first 3 parts, students had to implement basic OS functionality by extending the <a href="https://www.cse.iitb.ac.in/~mythili/os/references/book-rev11.pdf" target="_blank">XV6 OS</a>.
-          
-          </div>
-          <div class="teach-links">
-            <a href="https://www.cse.iitb.ac.in/~mythili/os/" target="_blank">Syllabus & Lecture Notes</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-    <script>
-      // Toggle expansion for teaching cards
-      (function(){
-        const cards = document.querySelectorAll('.teach-card');
-        cards.forEach(card => {
-          function setExpanded(expanded){
-            card.classList.toggle('expanded', expanded);
-            card.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-            const extra = card.querySelector('.teach-extra');
-            if (extra) extra.setAttribute('aria-hidden', expanded ? 'false' : 'true');
-          }
-          card.addEventListener('click', (e) => {
-            if (e.target.closest('.teach-extra')) return;
-            setExpanded(!card.classList.contains('expanded'));
-          });
-          card.addEventListener('keydown', (e)=>{
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setExpanded(!card.classList.contains('expanded')); }
-          });
-        });
-      })();
-    </script>
-  <footer><p>&copy; 2025 Hari Bhavsar</p></footer>
+    <main>
+        <header class="page-header">
+            <h1>Teaching</h1>
+            <p>
+                I have served as a teaching assistant for the following courses
+                at the Indian Institute of Technology Bombay.
+            </p>
+        </header>
+
+        <section aria-labelledby="teaching-experience">
+            <h2 class="section-heading" id="teaching-experience">
+                Teaching Experience
+            </h2>
+
+            <div class="teaching-list">
+
+                <!-- CS231 -->
+
+                <article class="teaching-card">
+                    <div class="teaching-header">
+                        <div class="institution">
+                            Indian Institute of Technology Bombay
+                        </div>
+
+                        <h3 class="course-title">
+                            CS231: Digital Logic Design and Computer Architecture
+                        </h3>
+
+                        <div class="instructor">
+                            Instructor: Professor Biswabandan Panda
+                        </div>
+                    </div>
+
+                    <div class="teaching-details">
+
+                        <div class="teaching-award">
+                            <span class="award-icon" aria-hidden="true">★</span>
+
+                            <div class="award-content">
+                                <strong>
+                                    Excellence in Teaching Assistantship Award
+                                </strong>
+                            </div>
+                        </div>
+
+                        <div class="details-grid">
+                            <div class="detail-label">Semester</div>
+                            <div class="detail-value">Autumn 2025</div>
+
+                            <div class="detail-label">Format</div>
+                            <div class="detail-value">
+                                3 hours of lab sessions per week
+                            </div>
+                        </div>
+
+                        <h4 class="description-title">Lab Topics</h4>
+
+                        <ul class="topic-list">
+                            <li>
+                                <strong>Verilog:</strong>
+                                Combinational and sequential circuit design and implementation.
+                            </li>
+
+                            <li>
+                                <strong>x86-64 Assembly:</strong>
+                                Registers, stack operations, functions, calling conventions,
+                                and structures.
+                            </li>
+
+                            <li>
+                                <strong>Performance Analysis:</strong>
+                                Using tools such as <code>perf</code> and Intel VTune to
+                                identify microarchitectural bottlenecks.
+                            </li>
+
+                            <li>
+                                <strong>Architecture Simulation:</strong>
+                                Extending the
+                                <a href="https://champsim.github.io/ChampSim/master/index.html"
+                                   target="_blank" rel="noopener noreferrer">ChampSim</a>
+                                simulator to model and evaluate cache designs.
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- CS236 -->
+
+                <article class="teaching-card">
+                    <div class="teaching-header">
+                        <div class="institution">
+                            Indian Institute of Technology Bombay
+                        </div>
+
+                        <h3 class="course-title">
+                            CS236: Operating Systems Lab
+                        </h3>
+
+                        <div class="instructor">
+                            Instructor: Professor Mythili Vutukuru
+                        </div>
+                    </div>
+
+                    <div class="teaching-details">
+                        <div class="details-grid">
+                            <div class="detail-label">Semester</div>
+                            <div class="detail-value">Spring 2025</div>
+
+                            <div class="detail-label">Format</div>
+                            <div class="detail-value">
+                                3 hours of lab sessions per week
+                            </div>
+                        </div>
+
+                        <h4 class="description-title">Course Description</h4>
+
+                        <p class="topic-list">
+                            The course covered four major areas: processes, memory,
+                            concurrency, and I/O and file systems. For the first three
+                            areas, students implemented operating-system functionality
+                            by extending the
+                            <a href="https://www.cse.iitb.ac.in/~mythili/os/references/book-rev11.pdf"
+                               target="_blank" rel="noopener noreferrer">XV6 operating system</a>.
+                        </p>
+
+                        <a class="resource-link"
+                           href="https://www.cse.iitb.ac.in/~mythili/os/"
+                           target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-book-open" aria-hidden="true"></i>
+                            Syllabus &amp; Lecture Notes
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Hari Bhavsar</p>
+    </footer>
+
 </body>
 </html>
+```

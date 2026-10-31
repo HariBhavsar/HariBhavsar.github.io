@@ -1,119 +1,441 @@
-<!-- publications.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Publications by Hari Bhavsar in computer architecture and cache security.">
     <title>Publications | Hari Bhavsar</title>
-    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        :root {
+            --background: #ffffff;
+            --surface: #f7f8fa;
+            --text: #202938;
+            --muted: #5c6675;
+            --accent: #245b8f;
+            --border: #e5e9ef;
+            --max-width: 1000px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            font-family: "Inter", "Segoe UI", Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.75;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Navigation */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: var(--max-width);
+            min-height: 68px;
+            margin: 0 auto;
+            padding: 0 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .logo {
+            color: var(--text);
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Page */
+
+        main {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 58px 28px 40px;
+        }
+
+        .page-header {
+            margin-bottom: 34px;
+        }
+
+        .page-header h1 {
+            margin-bottom: 8px;
+            font-size: clamp(28px, 4vw, 36px);
+            line-height: 1.25;
+            letter-spacing: -1px;
+        }
+
+        .page-header p {
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        .section-heading {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+            font-size: 21px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        /* Publication */
+
+        .publication {
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: #ffffff;
+        }
+
+        .publication-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 28px;
+            padding: 25px 26px;
+        }
+
+        .publication-main {
+            min-width: 0;
+        }
+
+        .publication-title {
+            margin-bottom: 12px;
+            font-size: 19px;
+            line-height: 1.5;
+            font-weight: 650;
+        }
+
+        .publication-title a {
+            color: var(--text);
+        }
+
+        .publication-title a:hover {
+            color: var(--accent);
+        }
+
+        .authors {
+            margin-bottom: 12px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .author-highlight {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .publication-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .venue {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .venue img {
+            width: 25px;
+            height: 25px;
+            object-fit: contain;
+        }
+
+        .award {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 5px 10px;
+            border: 1px solid #e9d8a6;
+            border-radius: 5px;
+            background: #fffbeb;
+            color: #805d12;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .publication-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+            margin-top: 2px;
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            background: #ffffff;
+            color: var(--accent);
+            font: inherit;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .publication-toggle:hover {
+            background: var(--surface);
+        }
+
+        .publication-toggle i {
+            transition: transform 0.2s ease;
+        }
+
+        .publication.expanded .publication-toggle i {
+            transform: rotate(180deg);
+        }
+
+        /* Expanded details */
+
+        .publication-details {
+            display: none;
+            padding: 24px 26px 26px;
+            border-top: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .publication.expanded .publication-details {
+            display: block;
+        }
+
+        .detail-label {
+            margin-bottom: 8px;
+            color: var(--text);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
+        .abstract {
+            margin-bottom: 22px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .paper-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .paper-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 13px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            background: #ffffff;
+            color: var(--text);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .paper-link:hover {
+            border-color: #cbd5e1;
+            text-decoration: none;
+        }
+
+        .paper-link i {
+            color: var(--accent);
+        }
+
+        /* Footer */
+
+        footer {
+            margin-top: 70px;
+            padding: 24px 28px;
+            border-top: 1px solid var(--border);
+            color: #7a8491;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        @media (max-width: 700px) {
+            .nav-container {
+                padding: 14px 20px;
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 18px;
+            }
+
+            main {
+                padding: 42px 20px 30px;
+            }
+
+            .publication-header {
+                flex-direction: column;
+                gap: 18px;
+                padding: 20px;
+            }
+
+            .publication-details {
+                padding: 20px;
+            }
+
+            .publication-title {
+                font-size: 17px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <nav class="navbar">
-    <div class="nav-container">
-      <a href="index.html" class="logo">Hari Bhavsar</a>
-      <ul class="nav-links">
-        
-        <li><a href="teaching.html">Teaching</a></li>
-        <li><a href="cv.html">CV</a></li>
-        <li><a href="publications.html">Publications</a></li>
-        <!-- <li><a href="research.html">Research & Projects</a></li> -->
-      </ul>
-    </div>
-  </nav>
-    <header>
-        <h1>Publications</h1>
-    </header>
-    <section>
-      <div class="pub-card" tabindex="0" role="button" aria-expanded="false">
-        <div class="pub-left">
-          <h2 class="pub-title">SoK: So, You Think You Know All About Secure Randomized Caches?</h2>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Hari Bhavsar</a>
+
+            <ul class="nav-links">
+                <li><a href="teaching.html">Teaching</a></li>
+                <li><a href="cv.html">CV</a></li>
+                <li><a href="publications.html" aria-current="page">Publications</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
         </div>
-        <div class="pub-right">
-          <div class="pub-venue">
-            <span class="usenix-logo" aria-hidden="true">
-              <!-- use an actual PNG image file; place usenix.png next to this HTML file -->
-              <img src="usenix.png" alt="USENIX logo" width="28" height="28" loading="lazy">
-            </span>
-            <span class="venue-text">USENIX Security</span>
-          </div>
-          <div class="pub-award">🏆 Distinguished Artifact Award</div>
-        </div>
+    </nav>
 
-        <!-- Hidden expanded content: author list + abstract (display-only) -->
-        <div class="pub-extra" aria-hidden="true">
-          <div class="pub-details">
-            <div class="field-label">Author List</div>
-            <div class="author-text">Hari Bhavsar*, Anubhav Bhatla*, Sayandeep Saha, Biswabandan Panda</div>
+    <main>
+        <header class="page-header">
+            <h1>Publications</h1>
+            <p>Research in computer architecture, cache security, and memory systems.</p>
+        </header>
 
-            <div class="field-label">Abstract</div>
-            <div class="abstract-text">
-Over the past decade, numerous side-channel attacks on
-shared resources, such as the Last-Level Cache (LLC), have
-exposed security risks in the form of flush-based,
-conflict-based, and occupancy-based attacks, driving the development
-of secure cache designs. To defend against conflict-based
-attacks, which is one of the most effective classes of 
-side-channel attacks, many modern designs randomize LLC set
-indexing to hinder eviction set construction. 
-Various randomized cache designs have been proposed recently, 
-offering distinct security guarantees. While these designs incorporate
-several microarchitectural modifications (we call them security knobs) 
-over the conventional set-associative cache to
-ensure security, the individual impact of these microarchitectural 
-modifications has never been evaluated. This leaves a
-gap in the understanding of randomized LLCs – the design
-space has not been explored completely and systematically.
-In this SoK, we identify and systematically analyze the
-design knobs employed in state-of-the-art secure randomized 
-cache designs that mitigate conflict-based attacks. Using
-conventional set-associative caches as our baseline, we study
-five key knobs: skewing, extra invalid tags, high associativity,
-replacement policy, and remapping. We also evaluate their
-impact on occupancy-based attacks. Our findings show that
-no single knob provides a comprehensive security guarantee.
-Instead, only specific combinations of knobs yield effective
-protection, while others offer little to no security benefit.</div>
-            <div class="pub-links">
-              <a href="https://www.usenix.org/system/files/usenixsecurity25-bhatla.pdf" target="_blank" rel="noopener">Full Paper</a>
-              <a href="https://zenodo.org/records/16747907" target="_blank" rel="noopener">Artifact</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        <section aria-labelledby="conference-papers">
+            <h2 class="section-heading" id="conference-papers">Conference Papers</h2>
 
-    <script>
-      // Toggle expansion for publication cards on click or Enter/Space
-      (function(){
-        const cards = document.querySelectorAll('.pub-card');
-        cards.forEach(card => {
-          function setExpanded(expanded) {
-            card.classList.toggle('expanded', expanded);
-            card.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-            const extra = card.querySelector('.pub-extra');
-            if (extra) extra.setAttribute('aria-hidden', expanded ? 'false' : 'true');
-          }
+            <article class="publication" id="secure-randomized-caches">
+                <div class="publication-header">
+                    <div class="publication-main">
+                        <h3 class="publication-title">
+                            <a href="https://www.usenix.org/system/files/usenixsecurity25-bhatla.pdf"
+                               target="_blank" rel="noopener noreferrer">
+                                SoK: So, You Think You Know All About Secure Randomized Caches?
+                            </a>
+                        </h3>
 
-          card.addEventListener('click', (e) => {
-            // avoid toggling when interacting with expanded content
-            if (e.target.closest('.pub-details')) return;
-            setExpanded(!card.classList.contains('expanded'));
-          });
+                        <p class="authors">
+                            <span class="author-highlight">Hari Bhavsar*</span>,
+                            <span class="author-highlight">Anubhav Bhatla*</span>,
+                            Sayandeep Saha, Biswabandan Panda
+                        </p>
 
-          card.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              setExpanded(!card.classList.contains('expanded'));
-            }
-          });
-        });
-      })();
-    </script>
+                        <div class="publication-meta">
+                            <span class="venue">
+                                <img src="usenix.png" alt="" loading="lazy">
+                                USENIX Security 2025
+                            </span>
+
+                            <span class="award">
+                                <i class="fas fa-award" aria-hidden="true"></i>
+                                Distinguished Artifact Award
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="publication-details" id="paper-details" hidden>
+                    <div class="paper-links">
+                        <a class="paper-link"
+                           href="https://www.usenix.org/system/files/usenixsecurity25-bhatla.pdf"
+                           target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                            Full Paper
+                        </a>
+
+                        <a class="paper-link"
+                           href="https://zenodo.org/records/16747907"
+                           target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-box-open" aria-hidden="true"></i>
+                            Artifact
+                        </a>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
     <footer>
-        <p>&copy; 2025 Hari Bhavsar</p>
+        <p>&copy; 2026 Hari Bhavsar</p>
     </footer>
-</body>
 
+  <script>
+      const toggle = document.querySelector(".publication-toggle");
+      const details = document.querySelector(".publication-details");
+      const label = toggle.querySelector(".toggle-label");
+
+      toggle.addEventListener("click", () => {
+          const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+
+          toggle.setAttribute("aria-expanded", String(!isExpanded));
+          details.hidden = isExpanded;
+          label.textContent = isExpanded ? "Show abstract" : "Hide abstract";
+      });
+  </script>
+</body>
 </html>
+```
